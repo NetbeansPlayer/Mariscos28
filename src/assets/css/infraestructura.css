@@ -1,0 +1,57 @@
+/* --- Infraestructura Section --- */
+
+main.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+main.container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #004080; /* azul marino elegante */
+  text-align: center;
+}
+
+main.container p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Lista estilizada */
+main.container ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+main.container ul li {
+  background: #f0f8ff;
+  margin-bottom: 0.8rem;
+  padding: 1rem;
+  border-left: 6px solid #0077b6; /* azul tipo mar */
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+main.container ul li strong {
+  color: #005f73;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+  background: #004080;
+  color: white;
+  font-size: 0.9rem;
+  border-top: 3px solid #0077b6;
+}
