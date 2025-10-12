@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+        <div class="logo">
+          <img src="src/assets/img/logo.jpg" alt="mariscos28" />
+        </div>
+        <div class="hamburguesa">
+          <img src="Imagenes/menu.png" alt="Menu hamburguesa" />
+        </div>
+        <nav class="menu">
+          <ul class="navegacion">
+            <li><a href="/Index.html">Inicio</a></li>
+            <li><a href="src/views/menu.html">Menu</a></li>
+            <li><a href="">Reservar</a></li>
+            <li><a href="#">Nosotros</a></li>
+              <a href="src/views/login.html">Iniciar Sesión</a
+              ><a href="src/views/register.html">Registrar</a>
+            </li>
+             <li class="dropdown">
+              <a href="#" class="dropdown-toggle">Documentación ▼</a>
+              <ul class="dropdown-menu">
+                <li><a href="src/views/infraestructura.html">infraestructura</a></li>
+                <li><a href="src/views/status.html">status</a></li>
+                <li><a href="src/views/Tecno.html">Tecnologia propuesta</a></li>
+              </ul>
+            </li>
+            <li>
+          </ul>
+        </nav>
+      </header>
+    <h1>Promociones</h1>
+    <p>¡Bienvenido a la sección de promociones! Aquí encontrarás las mejores ofertas y descuentos especiales en nuestros productos y servicios. No te pierdas nuestras promociones exclusivas por tiempo limitado.</p>
+    <p>Explora nuestras promociones actuales y aprovecha las oportunidades para ahorrar mientras disfrutas de lo mejor que tenemos para ofrecer.</p>    
+    
+
+    <div class="reserva-container">
+    <h2>Reservar Mesa</h2>
+    <form id="reservaForm" action="#" method="POST">
+      
+      <div class="row">
+        <div>
+          <label for="nombre">Nombre completo:</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Ej. Juan Pérez" />
+        </div>
+        <div>
+          <label for="telefono">Teléfono:</label>
+          <input type="tel" id="telefono" name="telefono" required placeholder="Ej. 4491234567" pattern="[0-9]{10}" />
+        </div>
+      </div>
+
+    </div>
+    
+</body>
+</html>
