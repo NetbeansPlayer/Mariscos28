@@ -1,11 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menú - Mariscos 28</title>
+    <link rel="stylesheet" href="../assets/css/disponibilidad.css" />
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>Mariscos el 28</h1>
+            <p class="subtitle">Información de disponibilidad y tiempos de servicio</p>
+        </div>
+    </header>
     
+    <div class="container">
+        <section class="availability-section">
+            <h2 class="section-title">Disponibilidad de Reservas</h2>
+            <p>A continuación se muestra nuestra disponibilidad actual para reservas. Los tiempos pueden variar según la temporada y eventos especiales.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Día de la Semana</th>
+                        <th>Horario</th>
+                        <th>Disponibilidad</th>
+                        <th>Tiempo de Espera Estimado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lunes - Jueves</td>
+                        <td>12:00 - 16:00</td>
+                        <td><span class="status high">Alta</span></td>
+                        <td>0-10 minutos</td>
+                    </tr>
+                    <tr>
+                        <td>Lunes - Jueves</td>
+                        <td>19:00 - 22:00</td>
+                        <td><span class="status medium">Media</span></td>
+                        <td>15-25 minutos</td>
+                    </tr>
+                    <tr>
+                        <td>Viernes - Sábado</td>
+                        <td>12:00 - 16:00</td>
+                        <td><span class="status medium">Media</span></td>
+                        <td>10-20 minutos</td>
+                    </tr>
+                    <tr>
+                        <td>Viernes - Sábado</td>
+                        <td>19:00 - 23:00</td>
+                        <td><span class="status low">Baja</span></td>
+                        <td>30-45 minutos</td>
+                    </tr>
+                    <tr>
+                        <td>Domingo</td>
+                        <td>12:00 - 17:00</td>
+                        <td><span class="status medium">Media</span></td>
+                        <td>15-30 minutos</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="note-box">
+                <p class="note-title">Nota Importante:</p>
+                <p>Los tiempos de espera estimados pueden variar según la afluencia de clientes y eventos especiales. Para garantizar su lugar, le recomendamos realizar una reserva con anticipación, especialmente para grupos de más de 6 personas. Las reservas se mantienen por un máximo de 15 minutos después de la hora acordada.</p>
+            </div>
+        </section>
+        
+        <section class="availability-section">
+            <h2 class="section-title">Acuerdo de Nivel de Servicio (SLA)</h2>
+            <p>Nuestro compromiso con la calidad del servicio se refleja en los siguientes acuerdos:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Estándar</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tiempo de espera para ser atendido</td>
+                        <td>5 minutos</td>
+                        <td>Máximo tiempo de espera para que un mesero tome su orden después de sentarse</td>
+                    </tr>
+                    <tr>
+                        <td>Tiempo de preparación de bebidas</td>
+                        <td>8 minutos</td>
+                        <td>Tiempo máximo para servir bebidas después de tomar la orden</td>
+                    </tr>
+                    <tr>
+                        <td>Tiempo de preparación de entradas</td>
+                        <td>15 minutos</td>
+                        <td>Tiempo máximo para servir entradas después de tomar la orden</td>
+                    </tr>
+                    <tr>
+                        <td>Tiempo de preparación de platos principales</td>
+                        <td>25 minutos</td>
+                        <td>Tiempo máximo para servir platos principales después de tomar la orden</td>
+                    </tr>
+                    <tr>
+                        <td>Tiempo de preparación de postres</td>
+                        <td>10 minutos</td>
+                        <td>Tiempo máximo para servir postres después de tomar la orden</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="note-box">
+                <p class="note-title">Compromiso de Transparencia:</p>
+                <p>En Restaurante Delicias valoramos su tiempo y experiencia. Estos tiempos son objetivos que nos esforzamos por cumplir en todas sus visitas. Si en algún momento no cumplimos con estos estándares, no dude en informarnos para que podamos mejorar nuestro servicio.</p>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Restaurante Delicias. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>

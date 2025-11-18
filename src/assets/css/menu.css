@@ -1,0 +1,256 @@
+ @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+
+*{
+    font-family: 'Nunito', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+
+}
+
+
+section{
+    padding: 2rem 9%;
+
+}
+
+section:nth-child(even){
+    background: #fff;
+}
+
+.btn{
+    display: inline-block;
+    font-size: 1.7rem;
+    color : #fff;
+    background: #026efa;
+    border-radius: .5rem;
+    cursor: pointer;
+    padding: .8rem 3rem;
+
+}
+
+.btn:hover{
+    background: #0056d6;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+    transform: scale(0.97);
+}
+
+.contenedor-menu {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header simple */
+header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #fff;
+    padding: 1rem 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+
+}
+
+.logo img {
+  height: 60px;
+  width: auto;
+  transition: var(--transition);
+  
+}
+
+.site-header.scrolled .logo img {
+  filter: none;
+}
+
+header .navbar a{
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: #333;
+    margin: 0 1rem;
+    
+}
+
+
+header .navbar a.active,
+header .navbar a:hover{
+    background: red;
+    color: #fff;
+}
+
+header .icons i,
+header .icons a{
+    cursor: pointer;
+    margin-left: .5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: #333;
+    border-radius: 50%;
+    background: #eee;
+}
+
+header .icons i:hover{
+    color: #fff;
+    background: #026efa;
+    transform: rotate(360deg);
+}
+
+/* Filtros */
+.filtros-categorias {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.filtro-btn {
+    padding: 8px 16px;
+    border: 2px solid #1a5276;
+    background-color: transparent;
+    color: #1a5276;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.filtro-btn:hover,
+.filtro-btn.activo {
+    background-color: #1a5276;
+    color: #fff;
+}
+
+/* Contenedor de productos */
+.contenedor-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* Tarjetas de productos */
+.producto {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.producto-imagen {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.producto-contenido {
+    padding: 20px;
+}
+
+.producto-categoria {
+    display: inline-block;
+    background-color: #f39c12;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.producto-nombre {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #1a5276;
+}
+
+.producto-descripcion {
+    color: #666;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.producto-precio {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2874a6;
+}
+
+/* Estados de carga */
+.cargando {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.1rem;
+    color: #666;
+    grid-column: 1 / -1;
+}
+
+.sin-productos {
+    text-align: center;
+    padding: 40px;
+    font-size: 1.1rem;
+    color: #666;
+    grid-column: 1 / -1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contenedor-productos {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .header-simple {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .logo {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .contenedor-productos {
+        grid-template-columns: 1fr;
+    }
+    
+    .filtros-categorias {
+        gap: 8px;
+    }
+    
+    .filtro-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}

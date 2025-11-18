@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menú - Mariscos 28</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/menu.css" />
+    <!-- Removí el link al JSON que estaba aquí -->
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"><img src="../assets/img/logo.jpg" alt=""><i class="mariscos"></i></a>
+
+        <nav class="navbar">
+          
+            <a href="/index3.html">Inicio</a>
+            <a href="#">Menu</a>
+            <a href="./Reservar.html">Reservar</a>
+            <a href="#">Nosotros</a></li>
+            <a class="active" href="./login.html">Iniciar Sesión</a>
+            <a href="./register.html">Registrar</a>    
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <i class="fas fa-book" id="menu-docs" title="Documentación"></i>
+            <a href="#" class="fas fa-shopping-cart"></a>
+
+        </div>
+    </header>
+
+    <div class="contenedor-menu">
+        <main class="contenido-menu">
+            <section class="filtros-categorias">
+                <button class="filtro-btn activo" data-categoria="todas">Todos</button>
+                <button class="filtro-btn" data-categoria="entradas">Entradas</button>
+                <button class="filtro-btn" data-categoria="platos-fuertes">Platos Fuertes</button>
+                <button class="filtro-btn" data-categoria="especialidades">Especialidades</button>
+                <button class="filtro-btn" data-categoria="postres">Postres</button>
+            </section>
+
+            <section class="contenedor-productos" id="contenedor-productos">
+                <div class="cargando">Cargando menú...</div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/catalogo.js"></script>
+</body>
+</html>

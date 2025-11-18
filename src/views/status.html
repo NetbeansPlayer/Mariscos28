@@ -1,11 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Estado del Servicio - Marisco el 28</title>
+    <link rel="stylesheet" href="../assets/css/status.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="header">
+            <h1>Estado del Servicio</h1>
+            <p>Mariscos el 28 - status actual </p>
+            <a href="/index3.html">INICIO</a>
+        </div>
+
+        <div class="status-grid">
+            <div class="status-card">
+                <h3>Uptime</h3>
+                <div class="metric">99.9%</div>
+                <span class="status-badge status-operational">Operacional</span>
+            </div>
+
+            <div class="status-card">
+                <h3>Latencia</h3>
+                <div class="metric">120ms</div>
+                <span class="status-badge status-operational">Óptima</span>
+            </div>
+
+            <div class="status-card">
+                <h3>Usuarios Activos</h3>
+                <div class="metric">alm 100 usuarios :O </div>
+                <span class="status-badge status-operational">Estable</span>
+            </div>
+
+            <div class="status-card">
+                <h3>TTFB</h3>
+                <div class="metric">180ms</div>
+                <span class="status-badge status-operational">Normal</span>
+            </div>
+        </div>
+
+        <div class="uptime-chart">
+            <h3>Actualización Últimas 24 Horas</h3>
+            <div class="chart-label">
+                <span>00:00</span>
+                <span>100%</span>
+            </div>
+            <div class="chart-bar" style="width: 100%;"></div>
+            
+            <div class="chart-label">
+                <span>Actual</span>
+                <span>99.9%</span>
+            </div>
+            <div class="chart-bar" style="width: 99.9%;"></div>
+        </div>
+
+        <div class="incident-list">
+            <h3>Incidentes Recientes</h3>
+            <div class="incident-item">
+                <strong>15 Nov 2024, 08:30</strong> - Mantenimiento programado del CDN
+            </div>
+            <div class="incident-item">
+                <strong>14 Nov 2024, 14:15</strong> - Optimización de base de datos
+            </div>
+            <div class="no-incidents">
+                No hay incidentes activos Papu todo jala al 100
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/status.js"></script>
 </body>
 </html>

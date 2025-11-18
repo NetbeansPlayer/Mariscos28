@@ -1,16 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecnología propuesta</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tecnología propuesta</title>
+  <link rel="stylesheet" href="../assets/css/Tecno.css">
 </head>
 <body>
 
-    <h1>Tecnología propuesta</h1>
-    <p>Si este proyecto fuera real, lo montaríamos en <strong>WordPress con WooCommerce</strong> 
-     ya que ofrece una solución abierta, flexible y con amplia comunidad de soporte.</p>
-  <p><em>Nota: en este curso todo se simulará únicamente en front-end con HTML, CSS y JavaScript, 
-     sin back-end real.</em></p>
+  <header>
+    <h1>Mariscos el 28</h1>
+    <nav>
+      <ul>
+        <li><a href="/index3.html">Inicio</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tecnologia" class="tecnologia-container">
+      <h2>¿Con qué plataforma se integraría “si fuera real”?</h2>
+      <p class="intro">
+        Este proyecto es 100% front-end (sin back-end). A continuación, se muestra de forma informativa
+        con qué plataforma podría integrarse en un despliegue real.
+      </p>
+
+      <div class="opciones">
+        <div class="card abierta">
+          <h3>Opción A — WordPress + WooCommerce</h3>
+          <p>Tienda administrable, gran ecosistema de plugins y bajo costo inicial.</p>
+          <ul>
+            <li>✔ Integración por REST API (JSON)</li>
+            <li>✔ Personalización alta (temas/plantillas)</li>
+            <li>⚠ Requiere mantenimiento y actualizaciones</li>
+          </ul>
+          <button>Ver “Admin” (simulado)</button>
+        </div>
+
+        <div class="card cerrada">
+          <h3>Opción B — Shopify</h3>
+          <p>Arranque rápido con hosting incluido; menor flexibilidad avanzada.</p>
+          <ul>
+            <li>✔ Checkout nativo y seguro</li>
+            <li>✔ Apps para ampliar funciones</li>
+            <li>⚠ Dependencia de proveedor (lock-in)</li>
+          </ul>
+          <button>Ver “Admin” (simulado)</button>
+        </div>
+      </div>
+
+      <div class="nota">
+        <p><strong>Nota:</strong> En este curso todo se simulará en front-end (HTML, CSS, JS) sin back-end real.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 MiTiendaTech — Proyecto Negocios Electrónicos I</p>
+  </footer>
+
 </body>
 </html>

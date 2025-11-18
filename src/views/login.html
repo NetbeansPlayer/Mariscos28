@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de sesión | Mariscos El 28</title>
+  <link rel="stylesheet" href="../assets/css/login.css">
 </head>
 <body>
-    <div class="login-container">
-    <h2>🌊 Bienvenido a Mariscos El 28 🐠</h2>
-    <form action="/index2.html" method="get">
-      <div class="input-group">
-        <input type="text" placeholder="Usuario">
-      </div>
-      <div class="input-group">
-        <input type="password" placeholder="Contraseña">
-      </div>
-      <button class="btn"  type="submit">Iniciar Sesión</button>
-      <div class="extra">
-        <p>¿No tienes cuenta? <a href="../views/register.html">Regístrate</a></p>
-      </div>
+  <div class="login-container">
+    <h1 class="titulo">Mariscos El 28</h1>
+    <h2>Inicio de Sesión</h2>
+
+    <form id="loginForm" class="form-login">
+      <input type="text" id="username" placeholder="Usuario" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="submit">Entrar</button>
     </form>
+
+    <p id="error-msg" class="error"></p>
   </div>
+
+  <script src="../assets/js/login.js"></script>
 </body>
 </html>

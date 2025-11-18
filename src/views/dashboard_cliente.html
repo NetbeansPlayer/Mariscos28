@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Usuario | Mariscos el 28</title>
+  <link rel="stylesheet" href="../assets/css/dashcliente.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">mariscos el 28</div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="profile">
+      <div class="avatar">👤</div>
+      <h3>Cliente</h3>
+    </div>
+    <nav class="menu">
+      <a href="#">📅 Reservas</a>
+      <a href="#">👤 Editar Perfil</a>
+      <a href="#">🎁 Promociones</a>
+      <a href="/index3.html" onclick="logout()">🚪 Salir</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1>Bienvenido al Dashboard de Cliente 🦐</h1>
+    <p>Explora tus reservas, promociones y actualiza tu perfil.</p>
+
+    <section class="marketing-section">
+  <h2>📢 Estrategia de Mercadotecnia Electrónica</h2>
+
+  <div class="marketing-grid">
+    <div class="marketing-card">
+      <h3>🎯 Público Meta</h3>
+      <p>Jóvenes y adultos entre 18 y 45 años, amantes de los mariscos, familias y turistas que buscan una experiencia gastronómica fresca, rápida y accesible en Aguascalientes.</p>
+    </div>
+
+   <section class="seguimiento">
+      <h2>Pedido #12345</h2>
+
+      <div class="progreso">
+        <div class="etapa completado">📦 Pedido recibido</div>
+        <div class="etapa completado">🍳 En preparación</div>
+        <div class="etapa activo">🚗 En camino</div>
+        <div class="etapa">🏠 Entregado</div>
+      </div>
+
+      <button class="btn-actualizar" onclick="actualizarEstado()">Actualizar estado</button>
+    </section>
+
+
+  </main>
+
+  <script src="../assets/js/dash.js"></script>
+</body>
+</html>

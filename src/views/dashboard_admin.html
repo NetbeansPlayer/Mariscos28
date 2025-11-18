@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Administrador | Mariscos El 28</title>
+  <link rel="stylesheet" href="../assets/css/dashboards.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">Mariscos el 28</div>
+  </header>
+
+  <aside class="sidebar">
+    <div class="profile">
+      <div class="avatar">👤</div>
+      <h3>Administrador</h3>
+    </div>
+    <nav class="menu">
+      <a href="#">👤 Editar Perfil</a>
+      <a href="#">📦 Inventario</a>
+      <a href="#">📅 Próximas Reservas</a>
+      <a href="#">🧭 Admin Trabajadores</a>
+      <a href="/index3.html" onclick="logout()">🚪 Salir</a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <h1>Panel del Administrador</h1>
+    <p>Gestiona el inventario, las reservas y el personal del restaurante.</p>
+
+
+    <section class="metrics-section">
+  <h2>Métricas de Pedidos</h2>
+
+  <div class="metrics-cards">
+    <div class="metric-card">
+      <h3>Pedidos de Hoy</h3>
+      <p id="pedidos">85</p>
+    </div>
+    <div class="metric-card">
+      <h3>Ingresos del Día</h3>
+      <p id="ingresos">$12,450 MXN</p>
+    </div>
+    <div class="metric-card">
+      <h3>Pedidos Entregados</h3>
+      <p id="entregados">78</p>
+    </div>
+    <div class="metric-card">
+      <h3>Cancelaciones</h3>
+      <p id="cancelaciones">7</p>
+    </div>
+  </div>
+
+  <div class="chart-container">
+    <h3>Ventas Semanales</h3>
+    <canvas id="salesChart"></canvas>
+  </div>
+</section>
+  </main>
+ 
+
+ 
+
+   
+
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../assets/js/metrica.js"></script>
+</body>
+</html>
