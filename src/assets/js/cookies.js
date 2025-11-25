@@ -97,7 +97,7 @@ const cookieBanner = document.getElementById('cookieBanner');
         // Enlace a política de privacidad
         privacyPolicy.addEventListener('click', (e) => {
             e.preventDefault();
-            alert('Aquí iría el enlace a la política de privacidad completa de Marisquería "La Ola"');
+            alert('Aquí iría el enlace a la política de privacidad completa de Marisquería "Mariscos el 28".');
         });
 
         // Cerrar modal haciendo clic fuera del contenido

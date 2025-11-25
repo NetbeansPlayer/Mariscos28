@@ -279,9 +279,45 @@ header .icons i:hover{
 }
 
 
+.metodos-pago {
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    width: 400px;
+    max-width: 90%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+}
+
+.metodos-pago h2 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: blue;
+}
+
+.lista-metodos {
+    list-style: none;
+    padding-left: 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.lista-metodos strong {
+    color: red;
+}
+
+.lista-metodos li {
+    margin-bottom: 10px;
+    color: #444;
+}
+
+
+
+
+
 
 .footer {
-  background-color: #0b3aaa;
+  background-color: red;
   border-radius: .5rem;
   border: #333;
   color: rgb(249, 249, 249);

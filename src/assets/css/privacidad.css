@@ -1,0 +1,72 @@
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f9fc; /* azul super clarito */
+    color: #1a1a1a;
+    line-height: 1.7;
+}
+
+/* Contenedor */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Encabezado principal */
+h1 {
+    font-size: 2.5rem;
+    color: #005f73; /* azul marino tipo oceano */
+    margin-bottom: 5px;
+}
+
+/* Subtítulo */
+.subtitle {
+    font-size: 1.2rem;
+    color: #0a9396;
+    margin-bottom: 30px;
+}
+
+/* Encabezados secundarios */
+h2 {
+    margin-top: 40px;
+    color: #005f73;
+    font-size: 1.7rem;
+}
+
+/* Listas */
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 7px;
+}
+
+/* Links */
+a {
+    color: #0a9396;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Texto destacado */
+strong {
+    color: #005f73;
+}
+
+/* Línea separadora suave */
+hr {
+    margin: 40px 0;
+    border: none;
+    height: 1px;
+    background: #cde8f3;
+}
