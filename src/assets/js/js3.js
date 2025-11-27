@@ -55,3 +55,19 @@ var swiper = new Swiper(".review-slider", {
     },
 });
 
+
+
+const tabs = document.querySelectorAll(".tab");
+    const contents = document.querySelectorAll(".method-info");
+
+    tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+
+            tabs.forEach(t => t.classList.remove("active"));
+            contents.forEach(c => c.classList.remove("active"));
+
+            tab.classList.add("active");
+            document.getElementById(tab.dataset.method).classList.add("active");
+        });
+    });
+

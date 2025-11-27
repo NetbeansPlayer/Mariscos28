@@ -56,8 +56,8 @@
                     <div class="content">
                         <span>Especialidades</span>
                         <h3>Cocteles</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit?</p>
-                        <a href="#" class="btn">Leer más</a>
+                        <p>Los mejores de la ciudad</p>
+                        <a href="./src/views/menu.html" class="btn">Leer más</a>
                     </div>
                     <div class="image">
                         <img src="src/assets/img/E6.jpg" alt="">
@@ -68,8 +68,8 @@
                     <div class="content">
                         <span>Especialidades</span>
                         <h3>Camarones</h3>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit?</p>
-                        <a href="#" class="btn">Leer más</a>
+                        <p>Lo mas pedido por nuestro clientes con mas de 5 diferentes Variantes</p>
+                        <a href="./src/views/menu.html" class="btn">Leer más</a>
                     </div>
                     <div class="image">
                         <img src="src/assets/img/E5.jpg" alt="">
@@ -81,10 +81,10 @@
                         <span>Especialidades</span>
                         <h3>Mojara Frita</h3>
                         <p>uno de nuestros platillo estrella para nuestros comensales</p>
-                        <a href="#" class="btn">Leer más</a>
+                        <a href="./src/views/menu.html" class="btn">Leer más</a>
                     </div>
                     <div class="image">
-                        <img src="src/assets/img/h5.png" alt="">
+                        <img src="src/assets/img/c10.avif" alt="">
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
     </section>
     <!-- home section fin  -->
      
-       <!-- review section inicio  -->
+    <!-- review section inicio  -->
 
     <section class="review" id="review">
 
@@ -136,8 +136,7 @@
                             </div>
                         </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                        Tempora iusto asperiores aliquam dolorum, quisquam</p>
+                    <p>Simplemente delicioso.</p>
                 </div>
 
                  <div class="swiper-slide slide">
@@ -155,8 +154,7 @@
                             </div>
                         </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                        Tempora iusto asperiores aliquam dolorum, quisquam</p>
+                    <p>Atencion de los meseros de 5 estrellas y los platillos muy buen sabor</p>
                 </div>
 
                  <div class="swiper-slide slide">
@@ -174,8 +172,7 @@
                             </div>
                         </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                        Tempora iusto asperiores aliquam dolorum, quisquam</p>
+                    <p>Lo recomiendo a todo Mundo, super delicioso y gran atencion</p>
                 </div>
 
                     <div class="swiper-slide slide">
@@ -193,8 +190,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                            Tempora iusto asperiores aliquam dolorum, quisquam</p>
+                        <p>Es economico y con un gran sabor a mar, sin duda la mejor experencias</p>
             </div>
         </div>
     </section>
@@ -221,26 +217,61 @@
           </div>
         </div>
     </section>
+<section class="payment-section">
+    <h2>Métodos de Pago Disponibles</h2>
 
-   <section class="metodos-pago">
-    <h2>Métodos de Pago TradicionaleS</h2>
+    <div class="payment-tabs">
+        <button class="tab active" data-method="efectivo">Efectivo</button>
+        <button class="tab" data-method="transferencia">Transferencia Bancaria</button>
+        <button class="tab" data-method="deposito">Depósito</button>
+        <button class="tab" data-method="online">Pago en Línea</button>
+    </div>
 
-    <ul class="lista-metodos">
-        <li>
-             <strong>Pago en efectivo</strong> — Solo en sucursal o entregas locales.
-        </li>
-        <li>
-            <strong>Transferencia bancaria</strong> — Enviar comprobante después del pago.
-        </li>
-        <li>
-            <strong>Depósito bancario</strong> — Disponible en sucursal bancaria.
-        </li>
+    <div class="payment-content">
 
-        <li>
-            <strong>Tarjetas Bancarias</strong> — ACEPTAMOS BBVA, BANORTE, SANTANDER, SCOTIABANK Y AMERICAN EXPRES.
-        </li>
-    </ul>
-  </section>
+        <div class="method-info active" id="efectivo">
+            <h3>Pago en efectivo (solo sucursal)</h3>
+            <p>Puedes pagar directamente en la sucursal al momento de recibir tu pedido.</p>
+            <ul>
+                <li>✔ Sin cargos adicionales</li>
+                <li>✔ Recibo físico</li>
+                <li>✔ Ideal si estás cerca</li>
+            </ul>
+        </div>
+
+        <div class="method-info" id="transferencia">
+            <h3>Transferencia Bancaria</h3>
+            <p>Realiza una transferencia desde tu banca móvil.</p>
+            <ul>
+                <li>Banco: BBVA</li>
+                <li>Titular: Marisquería El 28</li>
+                <li>CLABE: 1232 5632 2356 0456</li>
+                <li>Envía comprobante al WhatsApp</li>
+            </ul>
+        </div>
+
+        <div class="method-info" id="deposito">
+            <h3>Depósito Bancario</h3>
+            <p>Acude a cualquier ventanilla del banco y realiza el depósito.</p>
+            <ul>
+                <li>✔ Recibes confirmación en menos de 10 minutos</li>
+                <li>✔ Ideal si no manejas apps</li>
+            </ul>
+        </div>
+
+        <div class="method-info" id="online">
+            <h3>Pago en línea (Tarjeta / MercadoPago)</h3>
+            <p>Paga con tarjeta de crédito, débito o saldo MercadoPago.</p>
+            <ul>
+                <li>✔ Seguro y rápido</li>
+                <li>✔ Confirmación automática</li>
+                <li>✔ Facturación disponible</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
 
 
 

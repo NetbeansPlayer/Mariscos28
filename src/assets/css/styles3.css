@@ -279,38 +279,49 @@ header .icons i:hover{
 }
 
 
-.metodos-pago {
-    background: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    width: 400px;
-    max-width: 90%;
-    margin: 20px auto;
-    font-family: Arial, sans-serif;
+.payment-section {
+    width: 90%;
+    margin: 40px auto;
+    background: #f6f9fc;
+    padding: 20px;
+    border-radius: 10px;
 }
 
-.metodos-pago h2 {
-    margin-bottom: 15px;
-    font-size: 20px;
-    color: blue;
+.payment-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-.lista-metodos {
-    list-style: none;
-    padding-left: 0;
-    font-size: 16px;
-    line-height: 1.6;
+.payment-tabs .tab {
+    padding: 10px 15px;
+    border: none;
+    background: #e1e1e1;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
 }
 
-.lista-metodos strong {
-    color: red;
+.payment-tabs .tab.active {
+    background: #0077ff;
+    color: white;
 }
 
-.lista-metodos li {
-    margin-bottom: 10px;
-    color: #444;
+.payment-content .method-info {
+    display: none;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #dadada;
 }
 
+.payment-content .method-info.active {
+    display: block;
+}
+
+.payment-content h3 {
+    margin-top: 0;
+}
 
 
 
