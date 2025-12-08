@@ -1,11 +1,73 @@
+<!-- pagos/pago-metodo.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Procesar pago - Mariscos 28</title>
+  <link rel="stylesheet" href="../assets/css/menu.css">
+  <style>
+    .metodo-box { max-width:720px;margin:90px auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.08); }
+    .btn { padding:10px 14px;border-radius:8px;border:none;cursor:pointer; }
+    .btn-primary { background:#026efa;color:#fff;font-weight:700; }
+  </style>
 </head>
 <body>
-    
+  <header>
+    <a href="../views/menu.html" class="logo"><img src="../assets/img/logo.jpg" alt=""></a>
+  </header>
+
+  <main class="metodo-box">
+    <h2>Procesando pago (simulado)</h2>
+    <div id="info"></div>
+    <div id="metodo-area" style="margin:12px 0;"></div>
+    <div style="margin-top:14px;">
+      <button id="finalizar-btn" class="btn btn-primary">Continuar a confirmación</button>
+      <a href="pagos.html" style="margin-left:12px;">Volver</a>
+    </div>
+  </main>
+
+  <script>
+    function qParam(name) { const u = new URL(window.location.href); return u.searchParams.get(name); }
+    const total = qParam('total') || '0.00';
+    const nombre = qParam('nombre') || '';
+    const correo = qParam('correo') || '';
+    const metodo = qParam('metodo') || '';
+
+    const info = document.getElementById('info');
+    info.innerHTML = `
+      <div>Nombre: <strong>${nombre}</strong></div>
+      <div>Correo: <strong>${correo}</strong></div>
+      <div>Total: <strong>$${parseFloat(total).toFixed(2)}</strong></div>
+      <div>Método: <strong>${metodo}</strong></div>
+    `;
+
+    const metodoArea = document.getElementById('metodo-area');
+    // Mostrar UI mock por método
+    if (metodo === 'spinn') {
+      metodoArea.innerHTML = '<p>SPINN by OXXO — se mostrará el QR/clave de pago (simulado).</p><p>Referencia: 1234-ABCD (simulada)</p>';
+    } else if (metodo === 'tarjeta') {
+      metodoArea.innerHTML = '<p>Simulación: ingresar datos de tarjeta (NO real).</p>';
+    } else if (metodo === 'transferencia') {
+      metodoArea.innerHTML = '<p>Simulación: datos bancarios para transferencia (clave, banco, etc.).</p>';
+    } else if (metodo === 'qr') {
+      metodoArea.innerHTML = '<p>Simulación: mostrar QR para pago móvil.</p>';
+    } else if (metodo === 'efectivo') {
+      metodoArea.innerHTML = '<p>Simulación: pagar en sucursal al recoger.</p>';
+    } else {
+      metodoArea.innerHTML = '<p>Método no reconocido (simulado).</p>';
+    }
+
+    document.getElementById('finalizar-btn').addEventListener('click', () => {
+      // Generamos un id de pedido simulado (PED- + random)
+      const pedidoId = 'PED-' + Math.floor(Math.random()*900 + 100).toString().padStart(3,'0');
+      const params = new URLSearchParams({
+        pedido: pedidoId,
+        metodo,
+        total: parseFloat(total).toFixed(2)
+      });
+      window.location.href = 'confirmacion.html?${params.toString()}';
+    });
+  </script>
 </body>
 </html>

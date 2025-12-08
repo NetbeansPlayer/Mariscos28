@@ -5,3 +5,13 @@ const admin = localStorage.getItem("userRole");
       localStorage.clear();
       window.location.href = "index3.html";
     }
+
+
+    function showSection(id) {
+  document.querySelectorAll(".section").forEach(sec => {
+    sec.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+}
+

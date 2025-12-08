@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Confirmación de pago</title>
+<link rel="stylesheet" href="../assets/css/pagos.css">
 </head>
 <body>
-    
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">M</div>
+        <div>
+          <h1>Pago confirmado</h1>
+          <p>Revisa tu comprobante y factura</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="ticket-section">
+        <h2>Pedido: <span id="pedido-id"></span></h2>
+        <ul id="ticket-items"></ul>
+        <p>Total: <b id="total-ticket"></b></p>
+      </section>
+
+      <section id="factura-section">
+        <h3>Generar factura</h3>
+        <button id="btn-factura">Descargar Factura PDF</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/confirmacion.js"></script>
 </body>
 </html>

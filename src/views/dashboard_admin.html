@@ -6,67 +6,176 @@
   <title>Dashboard Administrador | Mariscos El 28</title>
   <link rel="stylesheet" href="../assets/css/dashboards.css">
 </head>
+
 <body>
+
   <header class="topbar">
-    <div class="logo">Mariscos el 28</div>
+    <div class="logo">Mariscos El 28</div>
   </header>
+
 
   <aside class="sidebar">
     <div class="profile">
       <div class="avatar">👤</div>
       <h3>Administrador</h3>
     </div>
+
     <nav class="menu">
-      <a href="#">👤 Editar Perfil</a>
-      <a href="#">📦 Inventario</a>
-      <a href="#">📅 Próximas Reservas</a>
-      <a href="#">🧭 Admin Trabajadores</a>
-      <a href="/index3.html" onclick="logout()">🚪 Salir</a>
+      <a onclick="showSection('inicio')">🏠 Inicio</a>
+      <a onclick="showSection('pedidos')">📦 Pedidos</a>
+      <a onclick="showSection('reservas')">📅 Próximas Reservas</a>
+      <a onclick="showSection('trabajadores')">🧭 Admin Trabajadores</a>
+      <a href="/index3.html">🚪 Salir</a>
     </nav>
   </aside>
 
   <main class="main-content">
-    <h1>Panel del Administrador</h1>
-    <p>Gestiona el inventario, las reservas y el personal del restaurante.</p>
-
-
-    <section class="metrics-section">
-  <h2>Métricas de Pedidos</h2>
-
-  <div class="metrics-cards">
-    <div class="metric-card">
-      <h3>Pedidos de Hoy</h3>
-      <p id="pedidos">85</p>
-    </div>
-    <div class="metric-card">
-      <h3>Ingresos del Día</h3>
-      <p id="ingresos">$12,450 MXN</p>
-    </div>
-    <div class="metric-card">
-      <h3>Pedidos Entregados</h3>
-      <p id="entregados">78</p>
-    </div>
-    <div class="metric-card">
-      <h3>Cancelaciones</h3>
-      <p id="cancelaciones">7</p>
-    </div>
-  </div>
-
-  <div class="chart-container">
-    <h3>Ventas Semanales</h3>
-    <canvas id="salesChart"></canvas>
-  </div>
-</section>
-  </main>
- 
-
- 
 
    
+    <section id="inicio" class="section active">
+      <h1>Panel del Administrador</h1>
+      <p>Gestiona los pedidos, reservas y personal del restaurante.</p>
 
-</body>
-</html>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="../assets/js/metrica.js"></script>
+      <section class="metrics-section">
+        <h2>Métricas de Pedidos</h2>
+
+        <div class="metrics-cards">
+          <div class="metric-card">
+            <h3>Pedidos de Hoy</h3>
+            <p>85</p>
+          </div>
+
+          <div class="metric-card">
+            <h3>Ingresos del Día</h3>
+            <p>$12,450</p>
+          </div>
+
+          <div class="metric-card">
+            <h3>Pedidos Entregados</h3>
+            <p>78</p>
+          </div>
+
+          <div class="metric-card">
+            <h3>Cancelaciones</h3>
+            <p>7</p>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <h3>Ventas Semanales</h3>
+          <canvas id="salesChart"></canvas>
+        </div>
+      </section>
+    </section>
+
+    
+    <section id="pedidos" class="section">
+      <h1>📦 Pedidos Recientes</h1>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Platillo</th>
+            <th>Estado</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>#1023</td>
+            <td>Juan Pérez</td>
+            <td>Ceviche Mixto</td>
+            <td style="color: green; font-weight: bold;">Entregado</td>
+            <td>$180</td>
+          </tr>
+
+          <tr>
+            <td>#1024</td>
+            <td>María López</td>
+            <td>Coctel de Camarón</td>
+            <td style="color: orange; font-weight: bold;">Preparación</td>
+            <td>$150</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+
+    <section id="reservas" class="section">
+      <h1>📅 Próximas Reservas</h1>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Personas</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Andrea Castillo</td>
+            <td>05/12/2025</td>
+            <td>6:00 PM</td>
+            <td>4</td>
+          </tr>
+
+          <tr>
+            <td>Carlos Ruiz</td>
+            <td>05/12/2025</td>
+            <td>8:00 PM</td>
+            <td>2</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+   
+    <section id="trabajadores" class="section">
+      <h1>🧭 Administración de Trabajadores</h1>
+
+      <button class="btn-add">+ Agregar Trabajador</button>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Puesto</th>
+            <th>Turno</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Luis Martínez</td>
+            <td>Cocinero</td>
+            <td>Matutino</td>
+            <td>
+              <button class="btn-edit">Editar</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Karla Gómez</td>
+            <td>Mesera</td>
+            <td>Vespertino</td>
+            <td>
+              <button class="btn-edit">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../assets/js/dashboard.js"></script>
 </body>
 </html>

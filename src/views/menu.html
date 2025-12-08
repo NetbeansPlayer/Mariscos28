@@ -6,32 +6,32 @@
     <title>Menú - Mariscos 28</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/menu.css" />
-    <!-- Removí el link al JSON que estaba aquí -->
 </head>
 <body>
+
     <header>
-        <a href="#" class="logo"><img src="../assets/img/logo.jpg" alt=""><i class="mariscos"></i></a>
+        <a href="#" class="logo"><img src="../assets/img/logo.jpg" alt=""></a>
 
         <nav class="navbar">
-          
             <a href="/index3.html">Inicio</a>
             <a href="#">Menu</a>
             <a href="./Reservar.html">Reservar</a>
-            <a href="#">Nosotros</a></li>
+            <a href="#">Nosotros</a>
             <a class="active" href="./login.html">Iniciar Sesión</a>
-            <a href="./register.html">Registrar</a>    
+            <a href="./register.html">Registrar</a>
         </nav>
 
         <div class="icons">
             <i class="fas fa-bars" id="menu-bars"></i>
-            <i class="fas fa-book" id="menu-docs" title="Documentación"></i>
-            <a href="#" class="fas fa-shopping-cart"></a>
-
+            <i class="fas fa-book" id="menu-docs"></i>
+            <a href="#" id="open-cart-btn" class="fas fa-shopping-cart"></a>
         </div>
     </header>
 
+    <!-- CONTENIDO REAL DEL MENÚ -->
     <div class="contenedor-menu">
         <main class="contenido-menu">
+
             <section class="filtros-categorias">
                 <button class="filtro-btn activo" data-categoria="todas">Todos</button>
                 <button class="filtro-btn" data-categoria="entradas">Entradas</button>
@@ -43,9 +43,64 @@
             <section class="contenedor-productos" id="contenedor-productos">
                 <div class="cargando">Cargando menú...</div>
             </section>
+
         </main>
     </div>
 
-    <script src="../assets/js/catalogo.js"></script>
+    <!-- MODAL DEL CARRITO -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-modal-content">
+            <button id="cart-close-btn" class="cart-close">&times;</button>
+            <h2> Tu pedido</h2>
+            <div id="cart-items" class="cart-items"></div>
+
+            <div class="cart-summary">
+                <div>Subtotal: <span id="cart-subtotal">$0.00</span></div>
+                <div>IVA (16%): <span id="cart-tax">$0.00</span></div>
+                <div><strong>Total: <span id="cart-total">$0.00</span></strong></div>
+            </div>
+
+            <div class="cart-actions">
+                <button id="cart-empty-btn" class="btn">Vaciar carrito</button>
+                <button id="cart-checkout-btn" class="btn">Realizar pedido (WhatsApp)</button>
+                <button id="cart-tip-btn" class="btn">¡Propina!</button>
+            </div>
+        </div> 
+    </div>
+
+
+
+    <!-- MODAL PROPINA -->
+<div id="tip-modal" class="cart-modal">
+    <div class="cart-modal-content">
+        <button id="tip-close-btn" class="cart-close">&times;</button>
+        <h2>Agregar Propina</h2>
+
+        <div class="tip-options">
+            <button class="tip-btn" data-tip="5">$5</button>
+            <button class="tip-btn" data-tip="10">$10</button>
+            <button class="tip-btn" data-tip="15">$15</button>
+            <button class="tip-btn" data-tip="20">$20</button>
+        </div>
+
+        <input 
+    type="number" 
+    id="tip-custom" 
+    placeholder="Propina personalizada"
+    style="margin-top:10px; width:100%; padding:8px;"
+>
+
+
+        <p id="tip-selected" style="margin-top:15px; font-weight:bold;">Propina seleccionada: $0</p>
+
+        <button id="add-tip-btn" class="btn">Agregar al total</button>
+    </div>
+</div>
+
+
+    <!-- Scripts -->
+    <script src="../assets/js/Catalogo.js"></script>
+    <script src="../assets/js/carrito.js" defer></script>
+
 </body>
 </html>
