@@ -1,104 +1,204 @@
-// ../assets/js/carrito.js
+// /src/assets/js/carrito.js
 document.addEventListener('DOMContentLoaded', () => {
-
-  const WHATSAPP_NUMBER = '524495049925';
-  const STORAGE_KEY = 'mariscos28_cart';
+  const STORAGE_KEY = 'cart';
   const TAX_RATE = 0.16;
+  const WHATSAPP_NUMBER = '524495049925';
 
-  let tipAmount = 0;
-
+  // DOM
+  const openCartBtn = document.getElementById('open-cart-btn');
   const cartModal = document.getElementById('cart-modal');
-  const tipModal = document.getElementById('tip-modal');
+  const cartCloseBtn = document.getElementById('cart-close-btn');
+  const cartItemsContainer = document.getElementById('cart-items');
+  const cartSubtotalEl = document.getElementById('cart-subtotal');
+  const cartTaxEl = document.getElementById('cart-tax');
+  const cartTotalEl = document.getElementById('cart-total');
+  const emptyBtn = document.getElementById('cart-empty-btn');
+  const checkoutBtn = document.getElementById('cart-checkout-btn');
 
-  const cartItemsEl = document.getElementById('cart-items');
-  const subtotalEl = document.getElementById('cart-subtotal');
-  const taxEl = document.getElementById('cart-tax');
-  const totalEl = document.getElementById('cart-total');
-  const tipSelectedEl = document.getElementById('tip-selected');
+  // estado
+  let cart = loadCart();
+  let tipAmount = parseFloat(localStorage.getItem('cart_tip') || '0');
 
-  let cart = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  // abrir/cerrar carrito (usa la clase 'open' — coincide con menu.css)
+  if (openCartBtn && cartModal) {
+    openCartBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      renderCart();
+      cartModal.classList.add('open');
+    });
+  }
+  if (cartCloseBtn && cartModal) {
+    cartCloseBtn.addEventListener('click', () => cartModal.classList.remove('open'));
+  }
+  if (cartModal) {
+    cartModal.addEventListener('click', (e) => {
+      if (e.target === cartModal) cartModal.classList.remove('open');
+    });
+  }
 
-  function calcTotals() {
-    const subtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+  // Delegación para botones "Agregar" (Catalogo.js pone botones con class .agregar-carrito)
+  document.body.addEventListener('click', (e) => {
+    const btn = e.target.closest('.agregar-carrito');
+    if (!btn) return;
+    const id = parseInt(btn.dataset.id, 10);
+    if (!isNaN(id)) addToCart(id);
+  });
+
+  // Vaciar carrito
+  if (emptyBtn) {
+    emptyBtn.addEventListener('click', () => {
+      if (!confirm('¿Vaciar carrito?')) return;
+      cart = [];
+      tipAmount = 0;
+      saveCart();
+      localStorage.removeItem('cart_tip');
+      renderCart();
+    });
+  }
+
+  // Checkout WhatsApp
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length === 0) return alert('El carrito está vacío.');
+      const totals = calcularTotals();
+      let msg = `Pedido:%0A`;
+      cart.forEach(i => msg += `• ${i.name} x${i.qty} - $${(i.price * i.qty).toFixed(2)}%0A`);
+      if (tipAmount) msg += `%0APropina: $${tipAmount.toFixed(2)}%0A`;
+      msg += `%0ATotal: $${totals.total.toFixed(2)}`;
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+  }
+
+  // Botón proceder a pago (crearlo si no existe)
+  ensureProceedButton();
+
+  // inicio render
+  renderCart();
+
+  // -------- funciones --------
+  function loadCart() {
+    try {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
+
+  function saveCart() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+  }
+
+  function addToCart(id) {
+    const prod = (window.productosGlobal || []).find(p => p.id === id);
+    if (!prod) {
+      console.warn('Producto no encontrado:', id);
+      return;
+    }
+    const item = cart.find(i => i.id === id);
+    if (item) item.qty++;
+    else cart.push({ id: prod.id, name: prod.name, price: prod.price, image: prod.image || '', qty: 1, note: '' });
+
+    saveCart();
+    renderCart();
+    if (cartModal) cartModal.classList.add('open');
+  }
+
+  function removeFromCart(id) {
+    cart = cart.filter(i => i.id !== id);
+    saveCart();
+    renderCart();
+  }
+
+  function updateQty(id, qty) {
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+    item.qty = Math.max(1, parseInt(qty, 10) || 1);
+    saveCart();
+    renderCart();
+  }
+
+  function updateNote(id, note) {
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+    item.note = note;
+    saveCart();
+  }
+
+  function calcularTotals() {
+    const subtotal = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
     const tax = subtotal * TAX_RATE;
-    const total = subtotal + tax + tipAmount;
-
-    subtotalEl.innerText = `$${subtotal.toFixed(2)}`;
-    taxEl.innerText = `$${tax.toFixed(2)}`;
-    totalEl.innerText = `$${total.toFixed(2)}`;
-
-    localStorage.setItem('cart_total', total.toFixed(2));
-    return total;
+    const total = subtotal + tax + (tipAmount || 0);
+    return { subtotal, tax, total };
   }
 
   function renderCart() {
-    if(cart.length === 0) {
-      cartItemsEl.innerHTML = '<p>Tu carrito está vacío</p>';
-      calcTotals();
-      return;
+    if (!cartItemsContainer) return;
+    cartItemsContainer.innerHTML = '';
+
+    if (!cart.length) {
+      cartItemsContainer.innerHTML = '<div class="sin-productos">Tu carrito está vacío</div>';
+    } else {
+      cart.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <img src="${item.image || '../assets/img/placeholder.png'}" class="cart-item-image" alt="${item.name}">
+          <div class="cart-item-info">
+            <div class="cart-item-top">
+              <strong class="cart-item-name">${item.name}</strong>
+              <button class="cart-item-remove" data-id="${item.id}" title="Eliminar">&times;</button>
+            </div>
+            <div class="cart-item-body">
+              <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+              <div class="cart-item-controls">
+                <label>Cant.
+                  <input type="number" min="1" value="${item.qty}" class="cart-item-qty" data-id="${item.id}">
+                </label>
+                <textarea class="cart-item-note" data-id="${item.id}" placeholder="Nota (opcional)">${escapeHtml(item.note)}</textarea>
+              </div>
+            </div>
+          </div>
+        `;
+        cartItemsContainer.appendChild(div);
+
+        div.querySelector('.cart-item-remove').addEventListener('click', () => removeFromCart(item.id));
+        div.querySelector('.cart-item-qty').addEventListener('change', e => updateQty(item.id, e.target.value));
+        div.querySelector('.cart-item-note').addEventListener('input', e => updateNote(item.id, e.target.value));
+      });
     }
 
-    cartItemsEl.innerHTML = '';
-    cart.forEach(item => {
-      const div = document.createElement('div');
-      div.classList.add('cart-item');
-      div.innerHTML = `
-        <span>${item.name} x${item.qty}</span>
-        <span>$${(item.price*item.qty).toFixed(2)}</span>
-      `;
-      cartItemsEl.appendChild(div);
-    });
-    calcTotals();
+    const totals = calcularTotals();
+    if (cartSubtotalEl) cartSubtotalEl.textContent = `$${totals.subtotal.toFixed(2)}`;
+    if (cartTaxEl) cartTaxEl.textContent = `$${totals.tax.toFixed(2)}`;
+    if (cartTotalEl) cartTotalEl.textContent = `$${totals.total.toFixed(2)}`;
+
+    // persistir tip/local totals
+    localStorage.setItem('cart_total', totals.total.toFixed(2));
   }
 
-  // Abrir/cerrar carrito
-  document.getElementById('open-cart-btn').addEventListener('click', () => cartModal.classList.add('show'));
-  document.getElementById('cart-close-btn').addEventListener('click', () => cartModal.classList.remove('show'));
-
-  // Vaciar carrito
-  document.getElementById('cart-empty-btn').addEventListener('click', () => {
-    if(confirm('¿Deseas vaciar el carrito?')) {
-      cart = [];
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
-      tipAmount = 0;
-      tipSelectedEl.innerText = `Propina seleccionada: $0`;
-      renderCart();
-    }
-  });
-
-  // Checkout WhatsApp
-  document.getElementById('cart-checkout-btn').addEventListener('click', () => {
-    if(cart.length === 0) return alert('El carrito está vacío');
-    const total = calcTotals();
-    let msg = `Hola, quiero realizar un pedido:\n`;
-    cart.forEach(i => msg += `${i.name} x${i.qty} — $${(i.price*i.qty).toFixed(2)}\n`);
-    msg += `Propina: $${tipAmount.toFixed(2)}\nTotal: $${total.toFixed(2)}`;
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
-  });
-
-  // Propina
-  document.getElementById('cart-tip-btn').addEventListener('click', () => tipModal.classList.add('show'));
-  document.getElementById('tip-close-btn').addEventListener('click', () => tipModal.classList.remove('show'));
-
-  // Tip buttons
-  document.querySelectorAll('.tip-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      tipAmount = parseFloat(e.target.dataset.tip);
-      tipSelectedEl.innerText = `Propina seleccionada: $${tipAmount.toFixed(2)}`;
+  function ensureProceedButton() {
+    if (!cartModal) return;
+    // evitar duplicados
+    if (document.getElementById('cart-pay-btn')) return;
+    const actions = cartModal.querySelector('.cart-actions');
+    if (!actions) return;
+    const payBtn = document.createElement('button');
+    payBtn.id = 'cart-pay-btn';
+    payBtn.className = 'btn';
+    payBtn.type = 'button';
+    payBtn.textContent = 'Proceder al pago';
+    actions.insertBefore(payBtn, actions.firstChild);
+    payBtn.addEventListener('click', () => {
+      const totals = calcularTotals();
+      window.location.href = `../pagos/pagos.html?total=${encodeURIComponent(totals.total.toFixed(2))}`;
     });
-  });
+  }
 
-  // Tip custom
-  document.getElementById('tip-custom').addEventListener('input', e => {
-    tipAmount = parseFloat(e.target.value) || 0;
-    tipSelectedEl.innerText = `Propina seleccionada: $${tipAmount.toFixed(2)}`;
-  });
+  function escapeHtml(text) {
+    if (!text) return '';
+    return String(text).replace(/[&<>"']/g, function (m) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];
+    });
+  }
 
-  // Add tip to total
-  document.getElementById('add-tip-btn').addEventListener('click', () => {
-    calcTotals();
-    tipModal.classList.remove('show');
-  });
-
-  renderCart();
 });

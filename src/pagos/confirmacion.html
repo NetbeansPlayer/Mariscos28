@@ -1,37 +1,111 @@
+<!-- ../pagos/confirmacion.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Confirmación de pago</title>
-<link rel="stylesheet" href="../assets/css/pagos.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Confirmación - Mariscos 28</title>
+  <link rel="stylesheet" href="../assets/css/menu.css">
+  <style>
+    .confirm-box { max-width:720px;margin:60px auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,.08); text-align:left;}
+    .btn { padding:10px 14px;border-radius:8px;border:none;cursor:pointer; }
+    .btn-primary { background:#026efa;color:#fff;font-weight:700; }
+    .btn-factura { background:#28a745;color:#fff;font-weight:700;margin-top:15px; }
+    .small { color:#666; font-size:0.95rem; }
+  </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="logo">M</div>
-        <div>
-          <h1>Pago confirmado</h1>
-          <p>Revisa tu comprobante y factura</p>
-        </div>
-      </div>
-    </header>
 
-    <main>
-      <section id="ticket-section">
-        <h2>Pedido: <span id="pedido-id"></span></h2>
-        <ul id="ticket-items"></ul>
-        <p>Total: <b id="total-ticket"></b></p>
-      </section>
+  <main class="confirm-box">
+    <h2>¡Gracias por tu pago (simulado)!</h2>
 
-      <section id="factura-section">
-        <h3>Generar factura</h3>
-        <button id="btn-factura">Descargar Factura PDF</button>
-      </section>
-    </main>
-  </div>
+    <p id="gracias"></p>
 
-  <script src="../assets/js/confirmacion.js"></script>
+    <p>Número de pedido: <strong id="pedido-id"></strong></p>
+    <p>Método seleccionado: <strong id="metodo-selected"></strong></p>
+
+    <div id="datos-fiscales-area" style="margin-top:12px; display:none;">
+      <h4>Datos fiscales:</h4>
+      <p>RFC: <span id="df-rfc"></span></p>
+      <p>Razón social: <span id="df-razon"></span></p>
+      <p>CP: <span id="df-cp"></span></p>
+      <p>Uso CFDI: <span id="df-uso"></span></p>
+    </div>
+
+    <button id="btn-factura" class="btn btn-factura">Descargar factura (PDF)</button>
+
+    <div style="margin-top:18px;">
+      <a href="../views/menu.html" class="btn btn-primary">Regresar al catálogo</a>
+    </div>
+  </main>
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script>
+    // lee datos guardados por pagos.js en localStorage
+    function readLS(key){ try { return JSON.parse(localStorage.getItem(key)); } catch { return null; } }
+    const pedidoId = localStorage.getItem("pedido_id") || 'PED-UNKNOWN';
+    const metodo = localStorage.getItem("pedido_metodo") || new URLSearchParams(window.location.search).get("metodo") || 'No especificado';
+    const total = localStorage.getItem("cart_total") || '0.00';
+    const orden = readLS("orden_actual") || [];
+    const datosFiscales = readLS("datos_fiscales") || null;
+
+    document.getElementById("pedido-id").textContent = pedidoId;
+    document.getElementById("metodo-selected").textContent = metodo;
+    document.getElementById("gracias").innerHTML = `Hemos recibido tu pago simulado. Total: <strong>$${parseFloat(total).toFixed(2)}</strong>`;
+
+    if (datosFiscales) {
+      document.getElementById("datos-fiscales-area").style.display = "block";
+      document.getElementById("df-rfc").textContent = datosFiscales.rfc || '';
+      document.getElementById("df-razon").textContent = datosFiscales.nombre || '';
+      document.getElementById("df-cp").textContent = datosFiscales.cp || '';
+      document.getElementById("df-uso").textContent = datosFiscales.uso || '';
+    }
+
+    document.getElementById("btn-factura").addEventListener("click", () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Logo/name (simple)
+      doc.setFontSize(16);
+      doc.text("Mariscos \"El 28\"", 14, 18);
+      doc.setFontSize(10);
+      doc.text("Dirección: Calle Ejemplo 123, Ciudad", 14, 24);
+      doc.text(`Pedido: ${pedidoId}`, 14, 30);
+      doc.text(`Método: ${metodo}`, 14, 36);
+      doc.text(`Fecha: ${new Date().toLocaleString()}`, 14, 42);
+      doc.text(`Total: $${parseFloat(total).toFixed(2)} MXN`, 14, 48);
+
+      // datos fiscales (si hay)
+      if (datosFiscales) {
+        doc.setFontSize(12);
+        doc.text("Datos Fiscales:", 14, 62);
+        doc.setFontSize(10);
+        doc.text(`RFC: ${datosFiscales.rfc}`, 14, 70);
+        doc.text(`Razón social: ${datosFiscales.nombre}`, 14, 76);
+        doc.text(`CP: ${datosFiscales.cp}`, 14, 82);
+        doc.text(`Uso CFDI: ${datosFiscales.uso}`, 14, 88);
+      }
+
+      // items
+      doc.setFontSize(12);
+      doc.text("Productos:", 14, datosFiscales ? 102 : 66);
+      let y = datosFiscales ? 110 : 74;
+      doc.setFontSize(10);
+      orden.forEach(it => {
+        const line = `${it.nombre} x${it.cantidad} — $${it.total.toFixed(2)}`;
+        doc.text(line, 14, y);
+        y += 7;
+        if (y > 270) { doc.addPage(); y = 20; }
+      });
+
+      // footer
+      doc.setFontSize(10);
+      doc.text("Gracias por su preferencia.", 14, y + 10);
+
+      doc.save(`Factura-${pedidoId}.pdf`);
+    });
+  </script>
 </body>
 </html>
