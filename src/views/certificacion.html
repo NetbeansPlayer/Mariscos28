@@ -1,80 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Certificación Digital Simulada</title>
-
-    <!-- Fuente y estilos generales -->
-    <link rel="stylesheet" href="../assets/css/styles3.css">
-
-    <style>
-        body {
-            background: #f4f6f9;
-            font-family: Arial, sans-serif;
-            padding: 0;
-            margin: 0;
-        }
-
-        .cert-container {
-            max-width: 750px;
-            margin: 60px auto;
-            background: white;
-            padding: 40px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .cert-container h1 {
-            font-size: 2rem;
-            color: #004085;
-            margin-bottom: 10px;
-        }
-
-        .cert-container h2 {
-            color: #333;
-        }
-
-        .cert-text {
-            margin-top: 25px;
-            font-size: 1.1rem;
-            color: #555;
-            line-height: 1.7;
-        }
-
-        .btn-regresar {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 22px;
-            background: #1e90ff;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: 0.3s ease;
-        }
-
-        .btn-regresar:hover {
-            background: #0066cc;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificación Digital - Mariscos el 28</title>
+    <link rel="stylesheet" href="../assets/css/certificacion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
 
-    <div class="cert-container">
-        <h1>Certificación Digital Simulada</h1>
-        <h2>Mariscos “El 28”</h2>
+   <header>
+        <a href="#" class="logo"><img src="src/assets/img/logo.jpg" alt=""><i class="mariscos"></i></a>
 
-        <p class="cert-text">
-            Este sitio implementa un sistema de <strong>certificación digital simulada</strong> 
-            con fines educativos para reforzar la confianza del usuario.
-            <br><br>
-            No tiene validez oficial y es únicamente parte del proyecto académico.
-        </p>
+        <nav class="navbar">
+            <a href="#">Inicio</a>
+            <a href="src/views/menu.html">Menu</a>
+            <a href="src/views/Reservar.html">Reservar</a>
+            <a href="#">Nosotros</a>
+            <a class="active" href="src/views/login.html">Iniciar Sesión</a>
+            <a href="src/views/register.html">Registrar</a> 
+        </nav>
 
-        <a href="../../index.html" class="btn-regresar">⟵ Regresar al inicio</a>
-    </div>
+        <div class="documentacion">
+            <a href="src/views/infraestructura.html">Infraestructura</a>
+            <a href="src/views/status.html">Status</a>
+            <a href="src/views/Tecno.html">Tecnología propuesta</a>
+            <a href="src/views/disponibilidad.html">disponibilidad</a>
+        </div> 
+
+        <div class="icons">
+            <i class="fas fa-bars" id="menu-bars"></i>
+            <i class="fas fa-book" id="menu-docs" title="Documentación"></i>
+            <a href="./src/views/dashboard_admin.html" class="fas fa-clipboard" ></a>
+            <a href="#" class="fas fa-shopping-cart"></a>
+        </div>
+    </header>
+
+    <main class="cert-container">
+        <div class="cert-card">
+            <div class="cert-icon">
+                <i class="fas fa-certificate"></i>
+            </div>
+            
+            <h1>Certificación Digital Simulada</h1>
+
+            <p class="cert-desc">
+                Este sitio implementa una certificación digital simulada para reforzar la confianza del usuario.
+            </p>
+
+            <div class="cert-info">
+                <p><strong>Certificado expedido a:</strong> Mariscos el 28</p>
+                <p><strong>Válido por:</strong> 2025 (No oficial)</p>
+            </div>
+
+            <a href="/index3.html" class="btn-regresar">
+                <i class="fas fa-arrow-left"></i> Regresar al inicio
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Mariscos el 28. Todos los derechos reservados.</p>
+    </footer>
 
 </body>
 </html>

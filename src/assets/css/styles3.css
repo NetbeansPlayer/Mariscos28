@@ -370,6 +370,25 @@ header .icons i:hover{
 }
 
 
+/* Sello digital simulado */
+.sello-digital {
+    margin-top: 20px;
+    padding: 10px;
+    border-top: 1px dashed #ccc;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.sello-digital a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.sello-digital a:hover {
+    text-decoration: underline;
+}
+
 
 
 

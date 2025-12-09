@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+
+*{
+    font-family: 'Nunito', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+
+}
+
+
+
+header{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #fff;
+    padding: 1rem 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+
+}
+
+.logo img {
+  height: 60px;
+  width: auto;
+  transition: var(--transition);
+  
+}
+
+.site-header.scrolled .logo img {
+  filter: none;
+}
+
+header .navbar a{
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: #333;
+    margin: 0 1rem;
+    
+}
+
+header .documentacion {
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    padding: .5rem 1.5rem;
+    color: #333;
+    margin: 0 1rem;
+    display: none;
+    flex-direction: column;
+    
+}   
+
+.documentacion a{
+    padding: .5rem 1.5rem;
+}
+
+.documentacion.active {
+  display: flex; /* aparece al activarse */
+}
+
+
+header .navbar a.active,
+header .navbar a:hover{
+    background: red;
+    color: #fff;
+}
+
+header .icons i,
+header .icons a{
+    cursor: pointer;
+    margin-left: .5rem;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    width: 4.5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: #333;
+    border-radius: 50%;
+    background: #eee;
+}
+
+header .icons i:hover{
+    color: #fff;
+    background: #026efa;
+    transform: rotate(360deg);
+}
+
+
+
+/* ===========================
+   ESTILOS ESPECIALES PARA LA
+   PÁGINA DE CERTIFICACIÓN
+   ===========================*/
+
+.cert-container {
+    padding-top: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #004aad, #d10000);
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+.cert-card {
+    background: #ffffff;
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.cert-icon {
+    font-size: 70px;
+    color: #004aad;
+    margin-bottom: 15px;
+}
+
+.cert-card h1 {
+    font-size: 3rem;
+    color: #222;
+    margin-bottom: 15px;
+}
+
+.cert-desc {
+    font-size: 1.6rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.cert-info p {
+    font-size: 1.8rem;
+    color: #333;
+    margin: 5px 0;
+}
+
+.btn-regresar {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 20px;
+    font-size: 1.6rem;
+    background: #004aad;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-regresar:hover {
+    background: #002f6c;
+    transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer bonito */
+.footer {
+    text-align: center;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+    font-size: 1.4rem;
+}

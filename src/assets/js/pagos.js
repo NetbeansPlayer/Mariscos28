@@ -111,62 +111,76 @@
 
   /* ========= FORMULARIOS ========= */
 
-  function renderTarjetaForm() {
-    const total = readTotal();
-    formArea.innerHTML = `
-      <h3>Datos de tarjeta</h3>
-      <label>Número</label>
-      <input id="tarjeta-num" maxlength="19" placeholder="1234 5678 9012 3456">
-      <div style="display:flex; gap:10px; margin-top:8px;">
-        <input id="tarjeta-exp" type="month">
-        <input id="tarjeta-cvv" maxlength="4" placeholder="CVV">
-      </div>
+ function renderTarjetaForm() {
+  const total = readTotal();
+  formArea.innerHTML = `
+    <h3>Datos de tarjeta</h3>
+    <label>Número</label>
+    <input id="tarjeta-num" maxlength="19" placeholder="1234 5678 9012 3456">
+    <div style="display:flex; gap:10px; margin-top:8px;">
+      <input id="tarjeta-exp" type="month">
+      <input id="tarjeta-cvv" maxlength="4" placeholder="CVV">
+    </div>
 
-      <div style="margin-top:10px;">
-        <label><input type="checkbox" id="chk-factura"> Deseo factura</label>
-      </div>
+    <div style="margin-top:10px;">
+      <label><input type="checkbox" id="chk-factura"> Deseo factura</label>
+    </div>
 
-      <div id="factura-fields" style="display:none; margin-top:10px; border-left:3px solid #eee; padding-left:10px;">
-        <label>RFC</label>
-        <input type="text" id="input-rfc" placeholder="XAXX010101000">
-        <label>Nombre / Razón Social</label>
-        <input type="text" id="input-nombre" placeholder="Nombre o empresa">
-        <label>Código Postal</label>
-        <input type="text" id="input-cp" maxlength="5" placeholder="12345">
-        <label>Régimen Fiscal</label>
-        <select id="input-regimen">
-          <option value="">Seleccione...</option>
-          <option value="601">601 – General de Ley Personas Morales</option>
-          <option value="605">605 – Sueldos y Salarios</option>
-          <option value="612">612 – Personas Físicas con Actividades Empresariales</option>
-          <option value="626">626 – Régimen Simplificado de Confianza</option>
-        </select>
-        <label>Uso de CFDI</label>
-        <select id="input-uso">
-          <option value="">Seleccione...</option>
-          <option value="G01">G01 – Adquisición de mercancías</option>
-          <option value="G03">G03 – Gastos en general</option>
-          <option value="P01">P01 – Por definir</option>
-        </select>
-        <p id="rfc-error" style="color:red;display:none;margin-top:6px;">Verifica los datos fiscales.</p>
-      </div>
+    <div id="factura-fields" style="display:none; margin-top:10px; border-left:3px solid #eee; padding-left:10px;">
+      <label>RFC</label>
+      <input type="text" id="input-rfc" placeholder="XAXX010101000">
+      <label>Nombre / Razón Social</label>
+      <input type="text" id="input-nombre" placeholder="Nombre o empresa">
+      <label>Código Postal</label>
+      <input type="text" id="input-cp" maxlength="5" placeholder="12345">
+      <label>Régimen Fiscal</label>
+      <select id="input-regimen">
+        <option value="">Seleccione...</option>
+        <option value="601">601 – General de Ley Personas Morales</option>
+        <option value="605">605 – Sueldos y Salarios</option>
+        <option value="612">612 – Personas Físicas con Actividades Empresariales</option>
+        <option value="626">626 – Régimen Simplificado de Confianza</option>
+      </select>
+      <label>Uso de CFDI</label>
+      <select id="input-uso">
+        <option value="">Seleccione...</option>
+        <option value="G01">G01 – Adquisición de mercancías</option>
+        <option value="G03">G03 – Gastos en general</option>
+        <option value="P01">P01 – Por definir</option>
+      </select>
+      <p id="rfc-error" style="color:red;display:none;margin-top:6px;">Verifica los datos fiscales.</p>
+    </div>
 
-      <div style="display:flex; gap:8px; margin-top:12px;">
-        <button class="btn-ghost" onclick="closeModal()">Cancelar</button>
-        <button class="confirm-btn" id="btn-pagar-tarjeta">Pagar ${fmtMoney(total)}</button>
-      </div>
-    `;
+    <div style="display:flex; gap:8px; margin-top:12px;">
+      <button class="btn-ghost" onclick="closeModal()">Cancelar</button>
 
-    // toggles
-    const chk = document.getElementById("chk-factura");
-    chk.addEventListener("change", (e) => {
-      document.getElementById("factura-fields").style.display = e.target.checked ? "block" : "none";
-    });
+      <button class="confirm-btn" id="btn-pagar-tarjeta">
+        Pagar ${fmtMoney(total)}
+      </button>
 
-    document.getElementById("btn-pagar-tarjeta").addEventListener("click", () => {
-      handleConfirmTarjeta();
-    });
-  }
+      <!-- 🔥 NUEVO BOTÓN: RECHAZO -->
+      <button class="btn-ghost" id="btn-rechazar-tarjeta" style="color:red;border:1px solid red;">
+        Rechazar Pago
+      </button>
+    </div>
+  `;
+
+  // toggles
+  const chk = document.getElementById("chk-factura");
+  chk.addEventListener("change", (e) => {
+    document.getElementById("factura-fields").style.display = e.target.checked ? "block" : "none";
+  });
+
+  document.getElementById("btn-pagar-tarjeta").addEventListener("click", () => {
+    handleConfirmTarjeta();
+  });
+
+  // 🔥 Evento del botón NUEVO
+  document.getElementById("btn-rechazar-tarjeta").addEventListener("click", () => {
+    handleRechazoTarjeta();
+  });
+}
+
 
   function renderOxxoForm() {
     const ref = randRef("OXX");
@@ -321,6 +335,32 @@
       showSuccessThenRedirect("Pago con tarjeta exitoso", "Tarjeta", null);
     }
   }
+
+
+  function handleRechazoTarjeta() {
+  const ref = randRef("TARJ");
+
+  // Guarda el rechazo localmente
+  const data = {
+    metodo: "Tarjeta",
+    referencia: ref,
+    estado: "RECHAZADO",
+    fecha: new Date().toLocaleString(),
+    total: readTotal()
+  };
+  localStorage.setItem("pago_rechazado", JSON.stringify(data));
+
+  // Pantalla de error simulada
+  Swal.fire({
+    icon: "error",
+    title: "Pago rechazado",
+    text: "El banco no autorizó la transacción.",
+    confirmButtonText: "Aceptar"
+  }).then(() => {
+    closeModal();
+  });
+}
+
 
   /* ========= GENERAR COMPROBANTE LOCAL Y REDIRECT ========= */
   function generarComprobanteLocal(metodo, referencia, datosFiscales = null) {
